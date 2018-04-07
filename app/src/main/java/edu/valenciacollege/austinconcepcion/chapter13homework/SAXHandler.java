@@ -1,5 +1,6 @@
-import android.util.Log;
+package edu.valenciacollege.austinconcepcion.chapter13homework;
 
+import android.util.Log;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
