@@ -2,6 +2,8 @@ package edu.valenciacollege.austinconcepcion.chapter13homework;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -23,6 +25,7 @@ public class ParseTask extends AsyncTask<String, Void, ArrayList<Item>> {
             saxParser.parse(urls[0], handler);
             return handler.getItems();
         } catch (Exception e) {
+            Toast.makeText(activity, "Sorry, we've encountered an error.", Toast.LENGTH_SHORT).show();
             Log.w("MainActivity", e.toString());
             return null;
         }
