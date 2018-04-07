@@ -3,6 +3,9 @@ package edu.valenciacollege.austinconcepcion.chapter13homework;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -12,12 +15,13 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class MainActivity extends AppCompatActivity {
     private final String URL = "https://waitbutwhy.com/feed";
+    private ListView feedList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        feedList = (ListView) findViewById(R.id.feed_list);
         ParseTask task = new ParseTask(this);
         task.execute(URL);
 
@@ -37,8 +41,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayList(ArrayList<Item> items){
-        if (items != null)
-            for(Item item : items)
+        if (items != null) {
+            ArrayList<String> titles = new ArrayList<String>();
+            for(Item item : items) {
+                titles.add(item.getTitle());
                 Log.w("MainActivity", item.toString());
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_list_item_1, titles);
+            feedList.setAdapter(adapter);
+        } else Toast.makeText(this, "Sorry, we didn't find anything...", Toast.LENGTH_LONG).show();
     }
 }
