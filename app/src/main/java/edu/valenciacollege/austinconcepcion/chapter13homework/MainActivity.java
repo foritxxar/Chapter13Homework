@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         } else Toast.makeText(this, "Sorry, we didn't find anything...", Toast.LENGTH_LONG).show();
     }
 
-    public void refreshList(ArrayList<Item> items, long key){
+    public void displayFilterList(ArrayList<Item> items, long key){
 
         if (items != null) {
             ArrayList<String> titlesWithDates = new ArrayList<String>();
@@ -89,7 +89,12 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Item> thisList = listItems;
         long key = Long.parseLong(filterBox.getText().toString());
         Collections.sort(thisList, new CustomComparator());
-        refreshList(thisList, key);
+        displayFilterList(thisList, key);
+    }
+
+    public void refreshList(View view){
+        ParseTask task = new ParseTask(this);
+        task.execute(URL);
     }
 
     private class ListItemHandler implements AdapterView.OnItemClickListener{

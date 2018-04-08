@@ -10,14 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WaitButWhy?"
-        android:textSize="25dp"/>
+        android:textSize="23dp"/>
     <EditText
         android:id="@+id/sort_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Enter days to filter"
-        android:minEms="6"
+        android:hint="Enter days..."
         android:layout_alignBaseline="@id/title_text"
         android:layout_toRightOf="@id/title_text"
         />
@@ -27,8 +26,18 @@
         android:layout_height="wrap_content"
         android:onClick="sortFilterList"
         android:layout_toRightOf="@id/sort_input_text"
-        android:layout_alignBottom="@id/sort_input_text"
+        android:layout_alignBaseline="@id/sort_input_text"
         android:text="Filter"/>
+
+    <ImageButton
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/filter_button"
+        android:layout_toRightOf="@id/filter_button"
+        android:background="@android:drawable/ic_popup_sync"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="refreshList" />
 
     <ListView android:id="@+id/feed_list"
         android:layout_height="match_parent"
