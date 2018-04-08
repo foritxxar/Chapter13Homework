@@ -41,6 +41,7 @@ public class SAXHandler extends DefaultHandler {
     }
 
     public void characters(char [] ch, int start, int length) throws SAXException{
+
         if(currentItem != null && element.equals("title") && validText)
             currentItem.setTitle(new String(ch, start, length));
         else if(currentItem!=null && element.equals("link") && validText)

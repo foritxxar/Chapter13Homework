@@ -1,8 +1,12 @@
 package edu.valenciacollege.austinconcepcion.chapter13homework;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,7 +20,7 @@ import javax.xml.parsers.SAXParserFactory;
 public class MainActivity extends AppCompatActivity {
     private final String URL = "https://waitbutwhy.com/feed";
     private ListView feedList;
-
+    private ArrayList<Item> listItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayList(ArrayList<Item> items){
+        listItems = items;
         if (items != null) {
             ArrayList<String> titles = new ArrayList<String>();
             for(Item item : items) {
@@ -50,6 +55,18 @@ public class MainActivity extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1, titles);
             feedList.setAdapter(adapter);
+            ListItemHandler lih = new ListItemHandler();
+            feedList.setOnItemClickListener(lih);
         } else Toast.makeText(this, "Sorry, we didn't find anything...", Toast.LENGTH_LONG).show();
     }
+
+    private class ListItemHandler implements AdapterView.OnItemClickListener{
+        public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+            Item selectedItem = listItems.get(position);
+            Uri uri = Uri.parse(selectedItem.getLink());
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(browserIntent);
+        }
+    }
 }
+
