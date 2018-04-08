@@ -39,13 +39,13 @@ public class Item {
         DateFormat inputFormatter, outputFormatter;
 
         inputFormatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzzz");
-        outputFormatter = new SimpleDateFormat("dd MM yyyy");
+        outputFormatter = new SimpleDateFormat("MMM dd yyyy");
         try {
             Date inputDate = inputFormatter.parse(date);
             Date todayDate = new Date();
             date = outputFormatter.format(inputDate);
             long diff = inputDate.getTime() - todayDate.getTime();
-            days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) * -1;
         }catch(ParseException pe){}
     }
 }

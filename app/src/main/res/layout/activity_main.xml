@@ -3,13 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.valenciacollege.austinconcepcion.chapter13homework.MainActivity">
+    tools:context="edu.valenciacollege.austinconcepcion.chapter13homework.MainActivity"
+    >
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WaitButWhy?"
+        android:textSize="25dp"/>
+    <EditText
+        android:id="@+id/sort_input_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Enter days to filter"
+        android:minEms="6"
+        android:layout_alignBaseline="@id/title_text"
+        android:layout_toRightOf="@id/title_text"
+        />
+    <Button
+        android:id="@+id/filter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sortFilterList"
+        android:layout_toRightOf="@id/sort_input_text"
+        android:layout_alignBottom="@id/sort_input_text"
+        android:text="Filter"/>
 
     <ListView android:id="@+id/feed_list"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:divider="#FF00"
         android:dividerHeight="2dp"
+        android:layout_below="@id/title_text"
         />
 
 </RelativeLayout>
