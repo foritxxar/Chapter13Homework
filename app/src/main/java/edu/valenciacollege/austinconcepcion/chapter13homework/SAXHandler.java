@@ -29,7 +29,7 @@ public class SAXHandler extends DefaultHandler {
         validText = true;
         element = startElement;
         if(startElement.equals("item"))
-            currentItem = new Item("", "");
+            currentItem = new Item("", "", "");
         //Log.w("MainActivity", "Inside startElement, startElement =" +startElement);
     }
 
@@ -46,6 +46,8 @@ public class SAXHandler extends DefaultHandler {
             currentItem.setTitle(new String(ch, start, length));
         else if(currentItem!=null && element.equals("link") && validText)
             currentItem.setLink(new String(ch, start, length));
+        else if(currentItem!=null && element.equals("pubDate") && validText)
+            currentItem.setDate(new String(ch, start, length));
         //String text = new String(ch, start, length);
         //Log.w("Main Activity", "Inside characters, text = "+text);
     }

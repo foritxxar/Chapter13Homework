@@ -47,13 +47,14 @@ public class MainActivity extends AppCompatActivity {
     public void displayList(ArrayList<Item> items){
         listItems = items;
         if (items != null) {
-            ArrayList<String> titles = new ArrayList<String>();
+            ArrayList<String> titlesWithDates = new ArrayList<String>();
             for(Item item : items) {
-                titles.add(item.getTitle());
+                String listItem = item.getTitle() +"\nPosted on: " + item.getDate();
+                titlesWithDates.add(listItem);
                 Log.w("MainActivity", item.toString());
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_list_item_1, titles);
+                    android.R.layout.simple_list_item_1, titlesWithDates);
             feedList.setAdapter(adapter);
             ListItemHandler lih = new ListItemHandler();
             feedList.setOnItemClickListener(lih);
